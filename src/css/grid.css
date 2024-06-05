@@ -1,0 +1,44 @@
+.themed-grid-head-col {
+  padding-top: .75rem;
+  padding-bottom: .75rem;
+  background-color:var(--color8);
+  border: 1px solid var( --color2);
+  font-family: var(--Font1);
+  font-size: large;
+  font-style:oblique;
+}
+
+.themed-grid-col {
+  padding-top: .75rem;
+  padding-bottom: .75rem;
+  background-color: var(--color4);
+  border: 1px solid  var( --color2);
+  font-family: var(--Font3);
+}
+
+.themed-container {
+  padding: .75rem;
+  margin-bottom: 1.5rem;
+  background-color: var(--color5);
+  border: 1px solid var( --color2);
+  font-family:var(--Font3);
+}
+
+@font-face {
+  font-family: 'Pacifico';
+  src: url('../fonts/Pacifico-Regular.ttf');
+}
+@font-face {
+  font-family: 'Handlee';
+  src: url('../fonts/Handlee-Regular.ttf');
+}
+@font-face {
+  font-family: 'Reenie';
+  src: url('../fonts/ReenieBeanie-Regular.ttf');
+}
+@font-face {
+  font-family: 'Passion';
+  src: url('../fonts/PassionsConflict-Regular.ttf');
+}
+
+

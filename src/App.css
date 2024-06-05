@@ -1,0 +1,107 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    margin-right: 20px !important;
+    width: 150px; /* Adjust the width to your preference */
+    height: auto; /* Maintain aspect ratio */
+  }
+}
+
+.App-header {
+  background-color:var(--color8);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+body {
+  
+    background-image: url('./img/pg1.jpg'); /* Adjust the path */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    min-height: 100vh; /* Ensure the body covers at least the full viewport height */
+    margin: 0;
+    font-family: var(--Font3);
+  
+  
+}
+
+.App {
+  min-height: 100vh; /* Ensure the App covers at least the full viewport height */
+  display: flex;
+  flex-direction: column;
+}
+
+.container {
+  flex: 1; 
+  padding: 20px; 
+}
+
+
+.home{
+  font-family: var(--Font3);
+  
+}
+.footer {
+  font-family: var(--Font3);
+}
+.about {
+  font-family: var(--Font3);
+}
+.aboutheader{
+  font-family: var(--Font1);
+}
+.total{
+  font-family: var(--Font3);
+}
+.famous{
+  font-family: var(--Font3);
+}
+.groups{
+  font-family: var(--Font1);
+}
+.custom-ml-auto {
+  margin-left: auto !important;
+  font-family: var(--Font1);
+  font-size: larger;
+}
+.mr-auto {
+  font-family: var(--Font1);
+  font-size: larger;
+}
+.custom-btn {
+  background-color:var(--color9);
+  font-family: var(--Font1);
+  font-size: large;
+  border: 1px solid var(--color8);
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  text-decoration: none;
+ 
+}
