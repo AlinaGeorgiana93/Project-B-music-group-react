@@ -146,18 +146,17 @@ export function List(props) {
               <div className="col-md-3 themed-grid-head-col">Genre</div>
             </div>
             {props.groups?.pageItems?.map((b) => (
-              <Link to={`/groupview/${b.musicGroupId}`}>
-                <div className="row mb-2 text-center">
-                <div className="col-md-6 themed-grid-col">
-                    {b.name}
-                </div>
-                <div className="col-md-3 themed-grid-col">{b.establishedYear}</div>
-
-                <div className="col-md-3 themed-grid-col">
-                    {b.strGenre}
-                </div>  
-                </div>
-                </Link>
+             <Link to={`/groupview/${b.musicGroupId}`} style={{ textDecoration: 'none' }}>
+             <div className="row mb-2 text-center">
+               <div className="col-md-6 themed-grid-col">
+                 {b.name}
+               </div>
+               <div className="col-md-3 themed-grid-col">{b.establishedYear}</div>
+               <div className="col-md-3 themed-grid-col">
+                 {b.strGenre}
+               </div>  
+             </div>
+           </Link>
             ))} 
        
         </div>

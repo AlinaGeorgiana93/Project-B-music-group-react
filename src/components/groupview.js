@@ -45,11 +45,11 @@ export function GroupView() {
             </div>
             <div className="col-sm-6">
             <label htmlFor="numberartists" className="form-label">Number Artists</label>
-            <input type="text" className="form-control" id="numberartists" value={group?.artists?.length || ''} readOnly />
+            <input type="text" className="form-control" id="numberartists" value={group?.artist?.length || ''} readOnly />
           </div>
           <div className="col-sm-6">
             <label htmlFor="numberalbums" className="form-label">Number published albums</label>
-            <input type="text" className="form-control" id="numberalbums" value={group?.albums?.length || ''} readOnly />
+            <input type="text" className="form-control" id="numberalbums" value={group?.album?.length || ''} readOnly />
           </div>
           </div>
         </form>

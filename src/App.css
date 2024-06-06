@@ -27,7 +27,7 @@
 }
 
 .App-link {
-  color: #61dafb;
+  color:var(--color9);
 }
 
 @keyframes App-logo-spin {
@@ -103,5 +103,21 @@ body {
   border-radius: 5px;
   cursor: pointer;
   text-decoration: none;
+  color:var(--color6);
  
+}
+.form-label {
+  font-family: var(--Font3);
+  font-size: large;
+  color:var(--color6);
+ 
+}
+.form-control{
+  font-family: var(--Font3);
+  font-size: large;
+  color:var(--color6);
+}
+.text-center {
+  text-align: center !important;
+  color: var(--color6);
 }

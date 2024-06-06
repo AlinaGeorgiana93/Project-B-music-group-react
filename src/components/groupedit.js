@@ -53,6 +53,14 @@ function GroupsDetailsEdit(props) {
               <label htmlFor="strGenre" className="form-label">Genre</label>
               <input type="text" className="form-control" id="strGenre" value={editedGroup?.strGenre} onChange={handleChange} />
             </div>
+            <div className="col-sm-6">
+            <label htmlFor="numberartists" className="form-label">Number Artists</label>
+            <input type="text" className="form-control" id="numberartists" value={editedGroup?.artists?.length || ''} onChange={handleChange} />
+          </div>
+          <div className="col-sm-6">
+            <label htmlFor="numberalbums" className="form-label">Number Published Albums</label>
+            <input type="text" className="form-control" id="numberalbums" value={editedGroup?.albums?.length || ''} onChange={handleChange} />
+          </div>
           </div>
         </form>
         <div className="mt-3">

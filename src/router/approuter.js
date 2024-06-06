@@ -4,7 +4,7 @@ import {Routes, Route } from "react-router-dom";
 import Home from '../pages/home';
 import About from '../pages/about';
 import { Musicgroups } from '../pages/musicgroups';
-import { GroupView } from '../pages/groupview';
+import { GroupView } from '../components/groupview';
 import  GroupsDetaliesEdit from '../components/groupedit';
 
 export function AppRouter() {
