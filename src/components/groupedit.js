@@ -3,21 +3,19 @@ import { useParams } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import musicService from '../services/music-group-service';
 
-function GroupsDetailsEdit(props) {
+ function GroupsDetailsEdit(props) {
   const params = useParams();
   const [group, setGroup] = useState({});
-  const [editedGroup, setEditedGroup] = useState({
-    name: '',
-    establishedYear: '',
-    strGenre: ''
-  });
+  const [editedGroup, setEditedGroup] = useState({});
 
   useEffect(() => {
     (async () => {
       const service = new musicService(`https://appmusicwebapinet8.azurewebsites.net/api`);
       const groupData = await service.readMusicGroupAsync(params.id);
       setGroup(groupData);
-      setEditedGroup(groupData);
+      setEditedGroup({
+        ...groupData
+      });
     })();
   }, [params.id]);
 
@@ -54,13 +52,13 @@ function GroupsDetailsEdit(props) {
               <input type="text" className="form-control" id="strGenre" value={editedGroup?.strGenre} onChange={handleChange} />
             </div>
             <div className="col-sm-6">
-            <label htmlFor="numberartists" className="form-label">Number Artists</label>
-            <input type="text" className="form-control" id="numberartists" value={editedGroup?.artists?.length || ''} onChange={handleChange} />
-          </div>
-          <div className="col-sm-6">
-            <label htmlFor="numberalbums" className="form-label">Number Published Albums</label>
-            <input type="text" className="form-control" id="numberalbums" value={editedGroup?.albums?.length || ''} onChange={handleChange} />
-          </div>
+              <label htmlFor="numberartists" className="form-label">Number Artists</label>
+              <input type="number" className="form-control" id="numberArtists" value={editedGroup?.numberArtists} onChange={handleChange} />
+            </div>
+            <div className="col-sm-6">
+              <label htmlFor="numberalbums" className="form-label">Number Published Albums</label>
+              <input type="number" className="form-control" id="numberAlbums" value={editedGroup?.numberAlbums} onChange={handleChange} />
+            </div>
           </div>
         </form>
         <div className="mt-3">

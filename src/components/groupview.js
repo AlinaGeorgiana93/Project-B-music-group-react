@@ -1,26 +1,18 @@
-import React, {useEffect, useState} from 'react'
-import { useParams } from "react-router-dom";
-import {Link } from "react-router-dom";
-
-import musicService from '../services/music-group-service'
+import React, { useEffect, useState } from 'react';
+import { useParams, Link } from "react-router-dom";
+import musicService from '../services/music-group-service';
 
 export function GroupView() {
-
   const params = useParams();
-  const [group, setGroups] = useState({});
-
+  const [group, setGroup] = useState({}); 
+ 
   useEffect(() => {
-
     (async () => {
-
-        const service = new musicService(`https://appmusicwebapinet8.azurewebsites.net/api`);
-        const a = await service.readMusicGroupAsync (params.id)
-
-        setGroups(a)
+      const service = new musicService(`https://appmusicwebapinet8.azurewebsites.net/api`);
+      const groupData = await service.readMusicGroupAsync(params.id, false); // false for albums & artists length
+      setGroup(groupData);
     })();
-
-  }, [params.id])
-  console.log(group);
+  }, [params.id]);
 
   return (
     <div className="row row-cols-1 row-cols-lg-4 align-items-stretch g-4 py-5">
@@ -29,32 +21,32 @@ export function GroupView() {
           <div className="row g-3">
             <div className="col-sm-6">
               <label htmlFor="musicGroupId" className="form-label">Group Id</label>
-              <input type="text" className="form-control" id="musicGroupId" value={group?.musicGroupId} readOnly />
+              <input type="text" className="form-control" id="musicGroupId" value={group.musicGroupId} readOnly />
             </div>
             <div className="col-sm-6">
               <label htmlFor="name" className="form-label">Group</label>
-              <input type="text" className="form-control" id="name" value={group?.name} readOnly />
+              <input type="text" className="form-control" id="name" value={group.name} readOnly />
             </div>
             <div className="col-sm-6">
               <label htmlFor="establishedYear" className="form-label">Established Year</label>
-              <input type="text" className="form-control" id="establishedYear" value={group?.establishedYear} readOnly />
+              <input type="text" className="form-control" id="establishedYear" value={group.establishedYear} readOnly />
             </div>
             <div className="col-sm-6">
               <label htmlFor="strGenre" className="form-label">Genre</label>
-              <input type="text" className="form-control" id="strGenre" value={group?.strGenre} readOnly />
+              <input type="text" className="form-control" id="strGenre" value={group.strGenre} readOnly />
             </div>
             <div className="col-sm-6">
-            <label htmlFor="numberartists" className="form-label">Number Artists</label>
-            <input type="text" className="form-control" id="numberartists" value={group?.artist?.length || ''} readOnly />
-          </div>
-          <div className="col-sm-6">
-            <label htmlFor="numberalbums" className="form-label">Number published albums</label>
-            <input type="text" className="form-control" id="numberalbums" value={group?.album?.length || ''} readOnly />
-          </div>
+              <label htmlFor="numberartists" className="form-label">Number Artists</label>
+              <input type="text" className="form-control" id="numberartists" value={group.artists?.length} readOnly />
+            </div>
+            <div className="col-sm-6">
+              <label htmlFor="numberalbums" className="form-label">Number published albums</label>
+              <input type="text" className="form-control" id="numberalbums" value={group.albums?.length} readOnly />
+            </div>
           </div>
         </form>
         <div className="mt-3">
-          <Link to={`/groupedit/${group?.musicGroupId}`} className="custom-btn">
+          <Link to={`/groupedit/${group.musicGroupId}`} className="custom-btn">
             Edit Group
           </Link>
         </div>

@@ -11,15 +11,19 @@ export function Musicgroups(props) {
   const [pageMax, setPageMax] = useState(0);
   const [totalCount, setTotalCount] = useState(0);
   
+  
   useEffect(() => {
   
   (async () => {
 
       const service = new musicService(`https://appmusicwebapinet8.azurewebsites.net/api`);
-      const a = await service.readMusicGroupsAsync(0, true, props.searchFilter);
+      const a = await service.readMusicGroupsAsync(0, false, props.searchFilter);
       setGroups(a);
       setPageMax(a.pageCount);
       setTotalCount(a.dbItemsCount);
+      console.log(setTotalCount);
+      console.log (setPageMax);
+      
 
     })();
 
@@ -31,19 +35,20 @@ export function Musicgroups(props) {
     e.preventDefault();  //In case the button is of type submit (default for a button inside a form)
 
     const service = new musicService(`https://appmusicwebapinet8.azurewebsites.net/api`);
-    const _serviceData = await service.readMusicGroupsAsync(0, true, e.searchFilter);
+    const _serviceData = await service.readMusicGroupsAsync(0, false, e.searchFilter);
 
     setGroups(_serviceData);
     setFilter(e.searchFilter);
     setPageMax(_serviceData.pageCount);
     setTotalCount(_serviceData.dbItemsCount);
+    
   }
 
   const onPrevClick = async (e) => {
     if (pageNr > 0) {
       //own pager activity
       const service = new musicService(`https://appmusicwebapinet8.azurewebsites.net/api`);
-      const _serviceData = await service.readMusicGroupsAsync(pageNr - 1, true, filter);
+      const _serviceData = await service.readMusicGroupsAsync(pageNr - 1, false, filter);
 
       setPageNr (pageNr - 1);
       setGroups(_serviceData);
@@ -55,7 +60,7 @@ export function Musicgroups(props) {
       if (pageNr < pageMax-1) {
         //own pager activity
         const service = new musicService(`https://appmusicwebapinet8.azurewebsites.net/api`);
-        const _serviceData = await service.readMusicGroupsAsync(pageNr + 1, true, filter);
+        const _serviceData = await service.readMusicGroupsAsync(pageNr + 1, false, filter);
         
         setPageNr(pageNr + 1);
         setGroups(_serviceData);
@@ -73,9 +78,9 @@ export function Musicgroups(props) {
 
       <p className='famous'>Below are some of the world's most famous Groups.</p>
       
-
+     
       <ListSearch searchFilter={filter} onSearch={onSearch} />
-      <div className="total">Total number of music groups: {totalCount}</div> {/* Display total count */}
+      <div className="total">Total number of music groups: {totalCount}</div> 
       <List groups={groups} />
       <ListPager onPrevClick={onPrevClick} onNextClick={onNextClick} />
     </div>
@@ -133,34 +138,29 @@ export function ListPager(props) {
   )
 }
 
-
 export function List(props) {
-    return (
-
-      
-        <div className="row row-cols-1 row-cols-lg-4 align-items-stretch g-4 py-5">
-        <div className="col-md-7 col-lg-10">
-            <div className="row mb-2 text-center">
-              <div className="col-md-6 themed-grid-head-col">Name</div>
-              <div className="col-md-3 themed-grid-head-col">Established Year</div>
-              <div className="col-md-3 themed-grid-head-col">Genre</div>
-            </div>
-            {props.groups?.pageItems?.map((b) => (
-             <Link to={`/groupview/${b.musicGroupId}`} style={{ textDecoration: 'none' }}>
-             <div className="row mb-2 text-center">
-               <div className="col-md-6 themed-grid-col">
-                 {b.name}
-               </div>
-               <div className="col-md-3 themed-grid-col">{b.establishedYear}</div>
-               <div className="col-md-3 themed-grid-col">
-                 {b.strGenre}
-               </div>  
-             </div>
-           </Link>
-            ))} 
-       
+  return (
+    <div className="row row-cols-1 row-cols-lg-6 align-items-stretch g-4 py-5">
+      <div className="col-md-7 col-lg-10">
+        <div className="row mb-2 text-center">
+          <div className="col-md-3 themed-grid-head-col">Name</div>
+          <div className="col-md-2 themed-grid-head-col">Established Year</div>
+          <div className="col-md-2 themed-grid-head-col">Genre</div>
+          <div className="col-md-2 themed-grid-head-col">Number of Albums</div>
+          <div className="col-md-2 themed-grid-head-col">Number of Artists</div>
         </div>
+        {props.groups?.pageItems?.map((b) => (
+          <Link to={`/groupview/${b.musicGroupId}`} style={{ textDecoration: 'none' }} key={b.musicGroupId}>
+            <div className="row mb-2 text-center">
+              <div className="col-md-3 themed-grid-col">{b.name}</div>
+              <div className="col-md-2 themed-grid-col">{b.establishedYear}</div>
+              <div className="col-md-2 themed-grid-col">{b.strGenre}</div>
+              <div className="col-md-2 themed-grid-col">{b.albums?.length || 0}</div>
+              <div className="col-md-2 themed-grid-col">{b.artists?.length || 0}</div>
+            </div>
+          </Link>
+        ))}
       </div>
-      
-    )
-  }
+    </div>
+  );
+}
